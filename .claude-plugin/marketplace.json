@@ -1,0 +1,14 @@
+{
+  "name": "claude-cribl-app-plugins",
+  "owner": {
+    "name": "Glenn Block",
+    "email": "gblock@cribl.io"
+  },
+  "plugins": [
+    {
+      "name": "app-creation",
+      "source": "./plugins/app-creation",
+      "description": "Tools for creating Cribl apps"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+# Product API access declaration. Declare Cribl product API paths your app needs to access.
+# At install time, admins see exactly which platform resources the app will use.
+#
+# This app reads the signed-in user's effective roles, authorization policy, and
+# team memberships. All paths below are read-only (GET).
+
+policies:
+  # Effective roles + authorization policy for the current client (works on cloud and on-prem)
+  - object: '/authorize/roles'
+    actions: ['GET']
+  - object: '/authorize/policy'
+    actions: ['GET']
+
+  # Role definitions, used to enrich role IDs with titles, descriptions, and tags
+  - object: '/system/roles'
+    actions: ['GET']
+
+  # Team definitions and their membership, used to show the teams the user belongs to
+  - object: '/system/teams'
+    actions: ['GET']
+  - object: '/system/teams/*'
+    actions: ['GET']

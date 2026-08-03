@@ -1,0 +1,10 @@
+{
+  "name": "app-creation",
+  "version": "1.0.0",
+  "description": "Tools for authoring Cribl Apps",
+  "author": {
+    "name": "Glenn Block",
+    "email": "gblock@cribl.io"
+  },
+  "keywords": ["cribl"]
+}
