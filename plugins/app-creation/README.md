@@ -102,6 +102,8 @@ This repository includes example documents to illustrate the plugin workflow:
 
 Use these as references to understand the expected structure and detail level for your own app documentation.
 
+You can copy them into an app folder and run `/app-implement` to try it out.
+
 ---
 
 ## Resources
