@@ -70,7 +70,7 @@ $ /app-implement --dry-run
 
 ## FAQ / Gotchas
 
-**"Do I have to answer all 8 phases?"**
+**"Do I have to answer all 7 phases?"**
 Yes. Each phase gathers essential context. Skip one and your brief will have gaps. The skill enforces this.
 
 **"Can I edit `APP_DEFINITION.md` directly?"**

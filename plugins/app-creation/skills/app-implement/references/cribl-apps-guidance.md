@@ -10,6 +10,18 @@ Reference for developers implementing Cribl Apps. Keep this updated as we discov
 
 ## General
 
+### ✅ DO
+- Stay within the app's directory boundary. Only read/write files within the app folder (and its subdirectories).
+- Treat the app directory as the root context — don't traverse up to parent directories or sibling folders.
+- When referencing existing code, only look at files within the app's scope.
+
+### ❌ DON'T
+- Don't look at or modify files in parent directories (e.g., `../`, `../../`)
+- Don't read from sibling app folders or shared plugin code outside the app's scope
+- Don't assume context from the broader project structure
+
+---
+
 ## Permissions
 
 ### ✅ DO
