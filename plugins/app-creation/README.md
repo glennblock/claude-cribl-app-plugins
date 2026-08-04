@@ -68,19 +68,6 @@ $ /app-implement --dry-run
 | `app-validate` | 2 | Validate the brief against quality gates (scope, clarity, completeness) |
 | `app-implement` | 3 | Implement app changes incrementally based on `APP_BRIEF.md` |
 
----
-
-## Commands
-
-| Command | Description |
-|---------|-------------|
-| `/app-questions` | Launch Phase 1: define your app's problem and workflows |
-| `/app-brief` | Launch Phase 2: generate the implementation brief |
-| `/app-validate` | Validate the brief before handing off to implementation |
-| `/app-implement` | Launch Phase 3: incrementally implement based on brief (use `--dry-run` to preview) |
-
----
-
 ## FAQ / Gotchas
 
 **"Do I have to answer all 8 phases?"**
