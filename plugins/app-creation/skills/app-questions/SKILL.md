@@ -25,81 +25,110 @@ when_to_use: At the start of a new Cribl app project to define the problem and w
 
 ## Skill Workflow
 
-The skill first validates clarity, then gathers information through 8 phases:
+The skill gathers information through 7 phases, with **clarity validation at every step** to ensure specific, thorough answers:
 
-### Phase 0: Validate Initial Clarity
-When the user first describes the app, the skill assesses whether the description provides sufficient detail:
-- **Clear description?** If yes, proceed directly to Phase 1
-- **Vague or incomplete?** Ask targeted follow-up questions before proceeding
-
-**Clarity check triggers on:**
-- Very short descriptions (< 2 sentences)
-- Missing key context (no mention of: who, what problem, or why)
+**Clarity validation triggers on:**
+- Very short or one-word answers (< 2 sentences)
+- Missing key context or vague language
 - Abstract statements without concrete details
-- Multiple ambiguous terms
+- Answers that don't address the question
 
-**Follow-up questions may include:**
-- "Who specifically will use this app?"
-- "What problem does it solve for them?"
-- "How is this different from what they do now?"
-- "What's the main action/outcome users want?"
-- "Are there specific tools or workflows it needs to integrate with?"
-
-The skill will loop through clarifying questions until it has enough detail to proceed confidently.
-
-**Examples:**
-- ❌ "A dashboard app" → Ask: "What will appear on this dashboard? Who will use it?"
-- ❌ "Helps with monitoring" → Ask: "What specifically are you monitoring? Who's doing the monitoring?"
-- ✅ "Displays CPU alerts for our infrastructure team so they can respond faster to production issues"
-- ✅ "Lets data engineers bulk-reload pipelines when a config change goes out"
-
----
-
-The skill then gathers information through 8 phases:
+When clarity issues are detected, the skill asks targeted follow-up questions to sharpen the answer before proceeding to the next phase.
 
 ### Phase 1: Understand the Problem
-- What's the main problem this app solves?
-- Who will use this app?
-- How are they currently solving this problem?
+**Guided discovery — ask ONE question at a time:**
+1. Ask: "What's the main problem this app solves?"
+   - Wait for answer, clarify if needed
+2. Ask: "Who will use this app?"
+   - Wait for answer, clarify if needed
+3. Ask: "How are they currently solving this problem?"
+   - Wait for answer, clarify if needed
 
-### Phase 2: Map User Workflows
-- Walk through a typical user's journey
-- Are there multiple workflows/use cases?
-- Any decision points or branches?
+**Clarity check:** Answers must include the problem, user role, and current workflow. Follow up if vague or missing context. Do NOT proceed to the next question until the current answer is clear and complete.
 
-### Phase 3: Identify Key Tasks
-- What will users create, modify, or delete?
-- What will users see or review?
+### Phase 2: Map User Workflows & Key Tasks
+**Guided workflow discovery:**
+- Ask for **Workflow 1** with a description of what the user does step-by-step
+- For each workflow, clarify:
+  - What specific steps does the user take (in order)?
+  - What do they create, modify, or delete?
+  - What do they see or review?
+  - Any decision points or branches?
+- Once clear, move to **Workflow 2**, then 3, etc.
+- Allow the user to enter blank or "done" to finish workflow collection
 
-### Phase 4: Explore Data & Integration Points
-- What data does the app display?
-- What does the app create or change?
-- Does the app call any external services (Slack, OpenAI, etc.)?
+**Clarity check:** Ensure each workflow is concrete, sequenced, and includes specific objects/data and actions. Don't proceed to the next workflow until the current one is clear.
 
-### Phase 5: Consider Permissions & Access
-- Should different users see different data?
-- How should the app behave if a user lacks permission?
+### Phase 3: Explore Data & Integration Points
+**Guided discovery — ask ONE question at a time:**
+1. Ask: "What data does the app display?"
+   - Wait for answer, clarify if needed
+2. Ask: "What does the app create or change?"
+   - Wait for answer, clarify if needed
+3. Ask: "Does the app call any external services (Slack, OpenAI, etc.)?"
+   - Wait for answer, clarify if needed
 
-### Phase 6: Ask About State & Secrets
-- Does the app need to save any state?
-- Are there general settings?
-- Are there any user-specific settings?
-- Does the app handle any secure secrets?
+**Clarity check:** Answers must specify data sources and integration names. Do NOT proceed to the next question until the current answer is clear and complete.
 
-### Phase 7: Narrow the Scope
-- What's the absolute minimum (MVP)?
-- What would be nice to add later?
-- Anything definitely out of scope?
+### Phase 4: Consider Permissions & Access
+**Guided discovery — ask ONE question at a time:**
+1. Ask: "Should different users see different data?"
+   - Wait for answer, clarify if needed
+2. Ask: "How should the app behave if a user lacks permission?"
+   - Wait for answer, clarify if needed
 
-### Phase 8: Clarify Preferences
-- What's the overall structure? (wizard, dashboard, form, table, etc.)
-- Any specific look/feel preferences?
+**Clarity check:** Answers must define user roles and access rules. Do NOT proceed to the next question until the current answer is clear and complete.
+
+### Phase 5: Ask About State & Secrets
+**Guided discovery — ask ONE question at a time:**
+1. Ask: "Does the app need to save any state?"
+   - Wait for answer, clarify if needed
+2. Ask: "Are there general settings?"
+   - Wait for answer, clarify if needed
+3. Ask: "Are there any user-specific settings?"
+   - Wait for answer, clarify if needed
+4. Ask: "Does the app handle any secure secrets?"
+   - Wait for answer, clarify if needed
+
+**Clarity check:** Answers must specify what state is saved and where. Do NOT proceed to the next question until the current answer is clear and complete.
+
+### Phase 6: Narrow the Scope
+**Guided discovery — ask ONE question at a time:**
+1. Ask: "What's the absolute minimum (MVP)?"
+   - Wait for answer, clarify if needed
+2. Ask: "What would be nice to add later?"
+   - Wait for answer, clarify if needed
+3. Ask: "Anything definitely out of scope?"
+   - Wait for answer, clarify if needed
+
+**Clarity check:** MVP must be realistic and deliverable. Do NOT proceed to the next question until the current answer is clear and complete.
+
+### Phase 7: Clarify Preferences
+**Guided discovery — ask ONE question at a time:**
+1. Ask: "What's the overall structure? (wizard, dashboard, form, table, etc.)"
+   - Wait for answer, clarify if needed
+2. Ask: "Any specific look/feel preferences?"
+   - Wait for answer, clarify if needed
+
+**Clarity check:** Answers must align with the workflows and tasks identified. Do NOT proceed to the next question until the current answer is clear and complete.
 
 ---
+
+## Re-entrancy: Resume Where You Left Off
+
+The skill is **fully re-entrant**. When you run `/app-questions`:
+1. If `APP_DEFINITION.md` doesn't exist, the skill starts from Phase 1
+2. If `APP_DEFINITION.md` exists, the skill reads it and resumes from the first incomplete phase
+3. The skill skips questions for phases that are already answered and complete
+4. **Each answer is written incrementally** to `APP_DEFINITION.md` as you complete questions, so no data is lost if you exit early
+
+This means you can run the skill incrementally: define the problem today, map workflows tomorrow, finish scope and preferences next week. All your answers are preserved.
 
 ## Persistence: APP_DEFINITION.md
 
-After gathering all information, the skill persists answers to `APP_DEFINITION.md` in the app directory:
+The skill persists answers incrementally to `APP_DEFINITION.md` in the app directory as you progress through each question. This file serves as both:
+- **Input:** When you resume, the skill reads this file to determine which phase to continue from
+- **Output:** Your complete app definition once all phases are done
 
 ```markdown
 # App Definition
