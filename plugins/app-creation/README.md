@@ -18,15 +18,15 @@ The `app-creation` plugin supports a three-phase workflow for Cribl app developm
 ### Before you start
 
 - **Scaffold an app first.** Create a new app in Cribl (Apps > Create App) and copy the starter code to your local machine.
-- **Run in the app directory.** All skills operate on the current working directory — `cd` into your app folder before invoking commands.
-- **One-way workflow.** Phase 1 → Phase 2 → implementation. You can re-run Phase 1 to refine, but Phase 2 depends on Phase 1 output.
+- **Run in the app directory.** All skills operate on the current working directory — `cd` into your app folder before invoking commands. Run `npm run dev` to launch the app.
+- **Launch Preview** - Launch the preview in Cribl so you can test out the app after it is built.
 
-### Walk-through: new app from scratch
+### Walk-through: new app from scratch after it has been scaffolded
 
 ```
-$ git checkout -b feature/my-app-name
 $ cd ./apps/my-app-name
-
+$ npm run dev
+$ open another terminal in the same folder
 $ /app-questions
   # Answer questions about the app's problem, workflows, and scope.
   # Answers are saved to APP_DEFINITION.md.
