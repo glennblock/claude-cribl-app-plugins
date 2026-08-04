@@ -12,7 +12,7 @@ Claude Code can install plugins directly from git repositories. To install this 
    `/plugin`
 * Goto Marketplaces
 * Add Marketplace
-* Paste this url `https://github.com/gblock/claude-cribl-app-plugins`
+* Paste this url `https://github.com/glennblock/claude-cribl-app-plugins`
 * Choose plugins to install (app-creation) 
 * `/reload plugins`
 
