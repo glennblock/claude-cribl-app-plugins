@@ -2,6 +2,22 @@
 
 A collection of Claude plugins designed to streamline Cribl app development and deployment workflows.
 
+## Installation
+
+### Using Claude Code
+
+Claude Code can install plugins directly from git repositories. To install this plugin collection:
+
+* In Claude Code, use the plugin installation command:
+   `/plugin`
+* Goto Marketplaces
+* Add Marketplace
+* Paste this url `https://github.com/gblock/claude-cribl-app-plugins`
+* Choose plugins to install (app-creation) 
+* `/reload plugins`
+
+For more details on using `/plugin` and plugin management in Claude Code, see the [Claude Code documentation](https://claude.com/docs).
+
 ## Plugins
 
 | Plugin | Description |
@@ -16,11 +32,7 @@ A collection of Claude plugins designed to streamline Cribl app development and 
 - **[Cribl Builder Guide](https://docs.cribl.io/apps/builder-guide/)** — App development guide
 - **[Cribl Community GitHub](https://github.com/criblapps)** — Cribl-maintained app examples
 
-## Getting Started
 
-1. Navigate to the plugin directory of interest (e.g., `plugins/app-creation/`)
-2. Review the plugin's README for setup and usage instructions
-3. Follow the workflow outlined in each plugin's documentation
 
 ---
 
